@@ -1,0 +1,33 @@
+.demo-button {
+    align-self: flex-start;
+    margin-right: 1em;
+    border: 2px solid;
+    border-radius: 4px;
+    font: inherit;
+    font-size: 1.2em;
+    padding: .4em 1.2em;
+    color: inherit;
+    background-color: transparent;
+}
+#sidebar{
+    float: left;
+    /*border-style: solid;*/
+    /*border-color: aqua;*/
+    background-color: aquamarine;
+    height: 600px;
+    width: 15%;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+#container{
+    float: right;
+    /*border-style: solid;*/
+    background-color: aliceblue;
+    width: 85%;
+    height: 600px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.mainpanel{
+    border-radius: 5px;
+}
