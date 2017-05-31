@@ -6,15 +6,20 @@
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
   <body>
-    <h1 align="center">Hello World!</h1>
+    <h2 align="center">Hello World!</h2>
     <!-- All of the Node.js APIs are available in this renderer process. -->
   <button class="demo-button" id="open" >Open</button>
+    <div id="toolbar">
+      <button id="connection">Connection</button>
+      <button id="create">Create</button>
+      <label for="search">Search</label> <input id="search" type="search">
+    </div>
   <div class="mainpanel">
     <div id="sidebar">
 
     </div>
     <div id="container">
-      <div id="toolbar"></div>
+
       <div id="summary"></div>
       <div id="content">
         <div id="description"></div>
@@ -26,6 +31,7 @@
 
   <script>
     // You can also require other files to run in this process
-    require('./renderer.js')
+    require('./renderer.js');
+    require('./connection.js')
   </script>
 </html>
