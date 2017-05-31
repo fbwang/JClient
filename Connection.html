@@ -1,0 +1,35 @@
+<html>
+<head>
+    <link rel="stylesheet" href="Connection.css">
+</head>
+<body>
+<div>
+    <!--<label for="host">Host</label>-->
+    <input class="authority" type="text" id="host" placeholder="Host">
+</div>
+<div>
+    <!--<label for="username">Username</label>-->
+    <input class="authority" type="text" id="username" placeholder="User">
+</div>
+<div>
+    <!--<label for="password">Password</label>-->
+    <input class="authority" type="password" id="password" placeholder="Password">
+</div>
+<div>
+    <button id="Connect">Connect</button>
+    <button id="cancel">Cancel</button>
+</div>
+<div id="project">
+
+</div>
+<div>
+    <button id="select">Select</button>
+</div>
+</body>
+<script>
+    require('./Connector.js');
+    function projectCheck() {
+        console.log(this.id);
+    }
+</script>
+</html>
