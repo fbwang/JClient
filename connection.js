@@ -7,6 +7,9 @@ const path = require('path');
 
 const invisMsgBtn = document.getElementById('connection');
 const invisReply = document.getElementById('description');
+var Client = require('node-rest-client').Client;
+var searchArgs = {};
+var hostaddress;
 
 invisMsgBtn.addEventListener('click', function (clickEvent) {
     const windowID = BrowserWindow.getFocusedWindow().id;
@@ -21,6 +24,23 @@ invisMsgBtn.addEventListener('click', function (clickEvent) {
 });
 
 ipcRenderer.on('factorial-computed', function (event, input, output) {
-    invisReply.textContent = output;
+    // invisReply.textContent = output;
+    searchArgs = output;
+    hostaddress = input;
     console.log(input);
 });
+
+ipcRenderer.on('send-project', function (event, projects) {
+    console.log(projects);
+    console.log(searchArgs);
+    console.log(hostaddress);
+    var client = new Client();
+    client.post(hostaddress+'/rest/api/2/search',searchArgs, function (req, res) {
+        console.log(req);
+    })
+
+});
+
+function createTable(obj) {
+
+}

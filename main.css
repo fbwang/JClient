@@ -14,7 +14,7 @@
     /*border-style: solid;*/
     /*border-color: aqua;*/
     background-color: aquamarine;
-    height: 600px;
+    height: 800px;
     width: 15%;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
@@ -24,10 +24,16 @@
     /*border-style: solid;*/
     background-color: aliceblue;
     width: 85%;
-    height: 600px;
+    height: 800px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
 .mainpanel{
     border-radius: 5px;
+}
+#toolbar{
+    background-color: darkcyan;
+}
+body{
+    font-family: system, -apple-system, '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
 }

@@ -3,6 +3,7 @@
 // All of the Node.js APIs are available in this process.
 
 // const ipc = require('electron').ipcRenderer;
+const electron = require('electron');
 var Client = require('node-rest-client').Client;
 
 const openBtn = document.getElementById('open');
@@ -23,7 +24,7 @@ openBtn.addEventListener('click', function (event) {
         }
     };
     client.post("https://fbwang.atlassian.net/rest/auth/1/session", loginArgs, function(data, response){
-        if (response.statusCode == 200) {
+        if (response.statusCode === 200) {
             // debugger;
             console.log('succesfully logged in, session:', data.session);
             var session = data.session;
@@ -49,6 +50,7 @@ openBtn.addEventListener('click', function (event) {
                 }
                 document.getElementById("sidebar").innerHTML = x;
                 document.getElementById("summary").innerHTML = searchResult.issues[1].fields.summary;
+                document.getElementById("description").innerHTML = searchResult.issues[1].fields.description;
             });
         }
         else {
@@ -59,3 +61,35 @@ openBtn.addEventListener('click', function (event) {
 
 });
 
+const createBtn = document.getElementById('create');
+
+createBtn.addEventListener('click', function (clickEvent) {
+    console.log(electron.app.getName());
+});
+
+
+// const BrowserWindow = require('electron').remote.BrowserWindow
+// const ipcRenderer = require('electron').ipcRenderer
+// const path = require('path')
+//
+// const invisMsgBtn = document.getElementById('connection')
+// debugger
+// const invisReply = document.getElementById('description')
+//
+// invisMsgBtn.addEventListener('click', function (clickEvent) {
+//     const windowID = BrowserWindow.getFocusedWindow().id
+//     const invisPath = 'file://' + path.join(__dirname, '../../sections/communication/invisible.html')
+//     var win = new BrowserWindow({ width: 400, height: 400, show: true })
+//     win.loadURL(invisPath)
+//
+//     win.webContents.on('did-finish-load', function () {
+//         const input = 100
+//         win.webContents.send('compute-factorial', input, windowID)
+//     })
+// })
+//
+// ipcRenderer.on('factorial-computed', function (event, input, output) {
+//     const message = 'The factorial of ${input} is ${output}'
+//     invisReply.textContent = message
+// })
+//

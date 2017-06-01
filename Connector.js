@@ -34,7 +34,7 @@ connectBtn.addEventListener('click', function (clickEvent) {
                     "Content-Type": "application/json"
                 },
                 data: {
-                    expand: "field"
+                    jql: "project = NODE"
                 }
             };
             client.get(hostaddr+"/rest/api/2/project", searchArgs, function (req,res) {
@@ -42,12 +42,12 @@ connectBtn.addEventListener('click', function (clickEvent) {
                 x = "";
                for (i = 0; i < req.length; i++){
                    var checkProject = req[i].key;
-                   x = x+ "<div class='checkboxs'> <input onclick='projectCheck()' class='projects' type='checkbox' id="+checkProject+"><label for="+checkProject+">"+checkProject+"</label> </div>";
+                   x = x+ "<div class='checkboxs'> <input class='projects' type='checkbox' id="+checkProject+"><label for="+checkProject+">"+checkProject+"</label> </div>";
                    // console.log(checkProject);
                }
                document.getElementById('project').innerHTML = x;
             });
-            fromWindow.webContents.send('factorial-computed', hostaddr, session);
+            fromWindow.webContents.send('factorial-computed', hostaddr, searchArgs);
 
             // console.log(searchArgs);
         }
@@ -60,6 +60,23 @@ connectBtn.addEventListener('click', function (clickEvent) {
 const cancelBtn = document.getElementById('cancel');
 cancelBtn.addEventListener('click', function (clickEvent) {
     window.close()
+});
+
+const  selBtn = document.getElementById('select');
+selBtn.addEventListener('click', function (clickEvent) {
+    // console.log("select test");
+    var projects = document.getElementsByClassName('projects');
+    // console.log(projects);
+    var selectedProject = [];
+    for (i =0; i < projects.length; i++){
+        if (projects[i].checked === true){
+            console.log(projects[i]);
+            selectedProject.push(projects[i].id);
+        }
+    }
+    fromWindow.webContents.send('send-project', selectedProject);
+    // console.log(selectedProject)
+    // window.close();
 });
 
 
