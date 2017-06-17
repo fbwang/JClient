@@ -34,7 +34,7 @@ connectBtn.addEventListener('click', function (clickEvent) {
                     "Content-Type": "application/json"
                 },
                 data: {
-                    jql: "project = NODE"
+                    // jql: "project = NODE"
                 }
             };
             client.get(hostaddr+"/rest/api/2/project", searchArgs, function (req,res) {
@@ -50,6 +50,9 @@ connectBtn.addEventListener('click', function (clickEvent) {
             fromWindow.webContents.send('factorial-computed', hostaddr, searchArgs);
 
             // console.log(searchArgs);
+        }
+        else{
+            console.log(response.statusCode)
         }
     });
     // var just = "gh";
@@ -74,9 +77,12 @@ selBtn.addEventListener('click', function (clickEvent) {
             selectedProject.push(projects[i].id);
         }
     }
-    fromWindow.webContents.send('send-project', selectedProject);
+    if(selectedProject.length !== 0){
+        fromWindow.webContents.send('send-project', selectedProject);
+    }
+
     // console.log(selectedProject)
-    // window.close();
+    window.close();
 });
 
 

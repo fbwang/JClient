@@ -6,8 +6,10 @@
 const electron = require('electron');
 var Client = require('node-rest-client').Client;
 
-const openBtn = document.getElementById('open');
-
+// const openBtn = document.getElementById('open');
+var $ = require('jquery');
+var dt = require( 'datatables.net' )(window, $);
+/*
 openBtn.addEventListener('click', function (event) {
     console.log("Text");
     // debugger
@@ -60,11 +62,19 @@ openBtn.addEventListener('click', function (event) {
     });
 
 });
+*/
+
+
+// $(document).ready( function () {
+//     debugger;
+//     $('list').DataTable();
+// } );
+
+
 
 const createBtn = document.getElementById('create');
-
 createBtn.addEventListener('click', function (clickEvent) {
-    console.log(electron.app.getName());
+
 });
 
 

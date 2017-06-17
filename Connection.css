@@ -16,3 +16,20 @@ body{
     height: 60%;
     text-align: left;
 }
+.margin-bottom{
+    margin-bottom: 10px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+.margin-bottom-sm{
+    margin-bottom: 5px !important;
+}
+.input-group{
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+*{
+    box-sizing: border-box;
+}
