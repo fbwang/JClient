@@ -6,21 +6,24 @@ body{
     font-size: 15px;
     overflow: hidden;
 }
-.authority{
-    width: 40%;
-    margin: 10px;
-}
 #project{
     background-color: darkcyan;
+    /*display: none;*/
     overflow-y: scroll;
-    height: 60%;
+    height: 48%;
     text-align: left;
+}
+.margin-bottom-top{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 .margin-bottom{
     margin-bottom: 10px !important;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
+    /*padding-left: 30px;*/
+    /*padding-right: 30px;*/
+    /*padding-top: 10px;*/
 }
 .margin-bottom-sm{
     margin-bottom: 5px !important;

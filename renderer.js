@@ -9,6 +9,12 @@ var Client = require('node-rest-client').Client;
 // const openBtn = document.getElementById('open');
 var $ = require('jquery');
 var dt = require( 'datatables.net' )(window, $);
+
+var btnclose = document.getElementById('close');
+btnclose.addEventListener('click', function (event) {
+    mainWindow.close();
+});
+
 /*
 openBtn.addEventListener('click', function (event) {
     console.log("Text");
@@ -71,11 +77,6 @@ openBtn.addEventListener('click', function (event) {
 // } );
 
 
-
-const createBtn = document.getElementById('create');
-createBtn.addEventListener('click', function (clickEvent) {
-
-});
 
 
 // const BrowserWindow = require('electron').remote.BrowserWindow

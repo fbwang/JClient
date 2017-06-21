@@ -5,17 +5,20 @@
   <title>Hello World!</title>
   <link rel="stylesheet" type="text/css" href="main.css">
   <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="node_modules/jquery-ui/themes/base/all.css">
   <script type="text/javascript" src="googleloader.js"></script>
+  <!--<script src="node_modules/jquery-ui/ui/jquery-1-7.js"></script>-->
     <!--<script type="text/javascript" src="jquery.accordion.js"></script>-->
 </head>
 <body>
 <!--<h2 align="center">Hello World!</h2>-->
 <!-- All of the Node.js APIs are available in this renderer process. -->
 <!--<button class="demo-button" id="open" >Open</button>-->
+<div id="frame"><button class="fa fa-times" id="close"></button><button class="fa fa-minus" id="min"></button> <button class="fa fa-plus" id="max"></button> </div>
 <div id="toolbar">
   <button id="connection" class="btn">Connection</button>
-  <button id="create">C</button>
-  <div class="search"><div class="input-group"> <input id="search"  type="search" style="width: 60%" placeholder="Search"><button class="fa fa-search btn-search"></button> </div></div>
+  <button id="create" class="btn">Create</button>
+  <div class="search"><div class="input-group"> <input id="search"  type="search" style="width: 60%" placeholder="Search"><button id="btn-search" class="fa fa-search btn-search"></button> </div></div>
 </div>
 <div class="mainpanel">
   <div id="sidebar">
@@ -37,7 +40,7 @@
   </div>
   <div id="container">
 
-    <div id="summary">
+    <div id="summary" class="ui-widget-content">
       <table id="list">
         <thead><tr><th class="type">Type</th><th class="key">Key</th><th class="summary">Summary</th>
           <th class="assignee">Assignee</th><th class="reporter">Reporter</th><th class="priority">P</th>
@@ -67,5 +70,8 @@
         require('./renderer.js');
         require('./connection.js');
 
+</script>
+<script>
+//  $('#summary').resizable()
 </script>
 </html>

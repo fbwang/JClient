@@ -17,7 +17,7 @@ invisMsgBtn.addEventListener('click', function (clickEvent) {                   
     const invisPath = 'file://' + path.join(__dirname, './Connection.html');
     var win = new BrowserWindow({ width: 400, height: 500, show: true, frame: false });
     win.loadURL(invisPath);
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
     win.webContents.on('did-finish-load', function () {
         win.webContents.send('compute-factorial', windowID)                             //After window load finished, send the main windowID to login window
@@ -42,6 +42,7 @@ ipcRenderer.on('send-project', function (event, projects) {                     
     // subtree.id = 'subtree';
     // document.getElementById('tree'+projects).appendChild(subtree);
     searchArgs.data.jql = "project = "+projects;
+    // searchArgs.data.jql = "text ~ \"demo\"";
 
     client.get(hostaddress+'/rest/api/2/priority', searchArgs, function (req, res) {   //Get all priority from sever
         for (i = 0;i <req.length;i++){
@@ -94,111 +95,7 @@ tab.addEventListener('click', function (clickEvent) {
 
 
 window.$ = window.jQuery = require('jquery');
-require('bootstrap');
 $(document).ready(function () {
-    // $('#priority_pie').click(function (e) {                        // Function of create a pie chart by priority
-    //     // console.log(issues);
-    //     // Initialization off pie data
-    //     var priorities = [
-    //         ['Highest', 0],
-    //         ['High',0],
-    //         ['Medium',0],
-    //         ['Low',0],
-    //         ['Lowest',0]
-    //     ];
-    //     // console.log(e.target);
-    //     for (i = 0; i<issues.length; i++){                          //Count the num of each priority
-    //         switch (issues[i].fields.priority.id){
-    //             case "1": priorities[0][1]++;
-    //             break;
-    //             case "2": priorities[1][1]++;
-    //             break;
-    //             case "3": priorities[2][1]++;
-    //             break;
-    //             case "4": priorities[3][1]++;
-    //             break;
-    //             case "5": priorities[4][1]++;
-    //             break;
-    //
-    //         }
-    //     }
-    //     // console.log('test'+count(issues,'priority'));
-    //     var tempdata = count(issues,'priority');
-    //     /*-------------------------*/
-    //     google.charts.load('current', {'packages':['corechart']});
-    //
-    //     // Set a callback to run when the Google Visualization API is loaded.
-    //     google.charts.setOnLoadCallback(drawChart);
-    //
-    //     // Callback that creates and populates a data table,
-    //     // instantiates the pie chart, passes in the data and
-    //     // draws it.
-    //     function drawChart() {
-    //
-    //         // Create the data table.
-    //         var data = new google.visualization.DataTable();
-    //         data.addColumn('string', 'Topping');
-    //         data.addColumn('number', 'Slices');
-    //         data.addRows(tempdata);
-    //
-    //         // Set chart options
-    //         var options = {'title':'How many issues each priority',
-    //             'width':400,
-    //             'height':300};
-    //
-    //         // Instantiate and draw our chart, passing in some options.
-    //         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    //         chart.draw(data, options);
-    //     }
-    //     /*-------------------------*/
-    //
-    // });
-    //
-    // $("#status_pie").click(function (e) {
-    //     var statuses = [
-    //         ['To DO',0],
-    //         ['In Progress',0],
-    //         ['Done',0]
-    //     ];
-    //     for (i = 0; i < issues.length; i++){
-    //         switch (issues[i].fields.status.id){
-    //             case "10000": statuses[0][1]++;
-    //             break;
-    //             case "3": statuses[1][1]++;
-    //             break;
-    //             case "10001": statuses[2][1]++;
-    //             break;
-    //          }
-    //     }
-    //
-    //     google.charts.load('current', {'packages':['corechart']});
-    //
-    //     // Set a callback to run when the Google Visualization API is loaded.
-    //     google.charts.setOnLoadCallback(drawChart);
-    //
-    //     // Callback that creates and populates a data table,
-    //     // instantiates the pie chart, passes in the data and
-    //     // draws it.
-    //     function drawChart() {
-    //
-    //         // Create the data table.
-    //         var data = new google.visualization.DataTable();
-    //         data.addColumn('string', 'Topping');
-    //         data.addColumn('number', 'Slices');
-    //         data.addRows(statuses);
-    //
-    //         // Set chart options
-    //         var options = {'title':'How many issues each priority',
-    //             'width':400,
-    //             'height':300};
-    //
-    //         // Instantiate and draw our chart, passing in some options.
-    //         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    //         chart.draw(data, options);
-    //     }
-    //
-    // });
-
     $('.chart').click(function (e) {
         // console.log(this.id);
         var properties = count(issues,this.id);
@@ -240,7 +137,22 @@ $(document).ready(function () {
         // $(this).next().slideToogle();
         // console.log($(this).next());
         $(this).next().slideToggle();
+    });
+
+    $('#btn-search').click(function (e) {
+        var client = new Client();
+        searchArgs.data.jql = "text ~ \"" + $('#search').val() +"\"";
+        // searchArgs.data.jql = "text ~ \"demo\"";
+        // console.log(searchArgs);
+        // debugger;
+        client.post(hostaddress+'/rest/api/2/search', searchArgs, function (data,response) {
+            if (response.statusCode === 200){
+                console.log(data);
+            }
+        })
     })
+
+    // $('#summary').resizable();
 
     // jQuery('#accordion').accordion();
 });
@@ -256,7 +168,6 @@ var count = function (obj, prop) {         //calculate the number of particular 
         return -1;
     };
     var result=[];
-    debugger;
     for(var i = 0; i< obj.length; i+=1){
         // console.log(i);
         var n = find(obj[i].fields[prop].name,result);
